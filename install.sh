@@ -1,6 +1,4 @@
 #!/bin/bash
-# install-claude2x-statusbar.sh
-
 set -e
 
 echo "🚀 Claude 2x Status Bar Installer"
@@ -39,7 +37,16 @@ cat > "$SCRIPT" << 'EOF'
 #!/bin/bash
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-DATA=$(curl -s "https://isclaude2x.com/json")
+DATA=$(curl -s --max-time 5 "https://isclaude2x.com/json" 2>/dev/null)
+
+if [ -z "$DATA" ] || ! echo "$DATA" | jq -e . &>/dev/null; then
+  echo "⚠️ Claude | color=orange"
+  echo "---"
+  echo "API not reachable"
+  echo "Refresh | refresh=true"
+  echo "isclaude2x.com | href=https://isclaude2x.com"
+  exit 0
+fi
 
 IS_2X=$(echo "$DATA" | jq -r '.is2x')
 EXPIRES=$(echo "$DATA" | jq -r '."2xWindowExpiresIn"')

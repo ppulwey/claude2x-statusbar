@@ -18,7 +18,7 @@ A lightweight macOS status bar plugin that shows whether the [Claude 2x promotio
 
 ## Install
 ```bash
-curl -fsSL https://raw.githubusercontent.com/DEIN-USERNAME/claude2x-statusbar/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ppulwey/claude2x-statusbar/main/install.sh | bash
 ```
 
 After installation, open SwiftBar and set the plugin folder to `~/SwiftBar` when prompted.
